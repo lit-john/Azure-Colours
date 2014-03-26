@@ -60,6 +60,7 @@ app.get('/', routes.index);
 app.post('/addPerson', routes.addPerson);
 app.get('/personsColours', routes.personsColours);
 app.post('/addColour', routes.addColour);
+app.get('/deleteColour', routes.deleteColour);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

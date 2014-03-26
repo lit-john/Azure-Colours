@@ -81,3 +81,23 @@ exports.addColour = function(req, res) {
 		});
 	}
 };
+
+exports.deleteColour = function (req, res) {
+	var db = req.app.settings.db;
+	var colourID = req.param('id');
+
+	if (!colourID) {
+		res.redirect('/personsColours?id='+req.session.personsOID);
+	} else {
+		var colourObjectID = new ObjectId(colourID);
+
+		db.collection('cappColours', function (err, coloursCollection){
+			coloursCollection.remove({_id: colourObjectID}, {w:1}, function (err, result) {
+				if (err) throw err;
+
+				res.redirect('/personsColours?id='+req.session.personsOID);
+			});
+		});
+	}
+	
+}

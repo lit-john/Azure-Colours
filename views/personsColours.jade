@@ -9,7 +9,9 @@ block content
 
 		ul
 			for colour in coloursArray
-				li #{colour.colour}
+				li #{colour.colour} 
+					small 
+						a(href='deleteColour?id=#{colour._id}') del
 
 		form(name='newColourForm', action='/addColour', method='POST')
 			label Colour 
