@@ -16,6 +16,10 @@ var mongo = require('mongodb');
 // Get the MongoClient Object
 var mongoClient = mongo.MongoClient;
 
+/* 
+ * If I am running this locally then use a local mongod server, otherwise use the one whose
+ * URI is stored in process.env.CUSTOMCONNSTR_MONGODB_URI
+ */
 var MONGODB_URI = process.env.CUSTOMCONNSTR_MONGODB_URI || 'mongodb://localhost:27017/colours';
 
 // Connect to the db. The callback function will be passed two arguments: err - which
