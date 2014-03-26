@@ -1,5 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    body(onload='document.newPersonForm.person.focus();')
+        h1 Peope's Favourite Colours
+
+        ul
+            for person in personsArray
+                li 
+                    a(href='/personsColours?id=#{person._id}') #{person.name}
+
+        form(name='newPersonForm', action='/addPerson', method='POST')
+            label Person 
+            input(type='text', name='person')
+            input(type='submit', name='submit', value='Add')
