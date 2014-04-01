@@ -58,6 +58,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
+  app.locals.pretty = true;
 }
 
 app.get('/', routes.index);
@@ -65,6 +66,7 @@ app.post('/addPerson', routes.addPerson);
 app.get('/personsColours', routes.personsColours);
 app.post('/addColour', routes.addColour);
 app.get('/deleteColour', routes.deleteColour);
+app.get('/editColour', routes.editColour);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

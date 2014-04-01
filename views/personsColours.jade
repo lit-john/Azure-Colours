@@ -9,11 +9,17 @@ block content
 
 		ul
 			for colour in coloursArray
-				li #{colour.colour} 
-					small 
-						a(href='deleteColour?id=#{colour._id}') del
+				li 
+					form(action='/editColour', onsubmit='return onEditColour(this)')
+						input(type='text', name='colourField', value='#{colour.colour}', readonly).readonly
+						input(type='hidden', name='id', value='#{colour._id}')
+						button(type='submit', name='submit', value='edit')#edit
+							small EDIT
+						button(type='button')
+							a(href='deleteColour?id=#{colour._id}')
+								small DELETE
 
 		form(name='newColourForm', action='/addColour', method='POST')
-			label Colour 
 			input(type='text', name='colour')
-			input(type='submit', name='submit', value='Add')
+			button(type='submit', name='submit', value='Add')
+				small ADD

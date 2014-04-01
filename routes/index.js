@@ -142,3 +142,23 @@ exports.deleteColour = function (req, res) {
 	}
 	
 }
+
+exports.editColour = function (req, res) {
+	var db = req.app.settings.db;
+	var colourID = req.param('id');
+	var newColour = req.param('colourField');
+
+	if(!colourID) {
+		res.redirect('/personsColours?id='+req.session.personsOID);
+	} else {
+		var colourObjectID = new ObjectId(colourID);
+
+		db.collection('cappColours', function (err, coloursCollection){
+			coloursCollection.update({_id: colourObjectID}, {$set: {colour: newColour}}, function (err, result) {
+				if (err) throw err;
+
+				res.redirect('/personsColours?id='+req.session.personsOID);
+			});
+		});
+	}
+};
