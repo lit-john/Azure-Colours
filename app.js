@@ -68,7 +68,6 @@ app.get('/personsColours', routes.personsColours);
 app.post('/addColour', routes.addColour);
 app.get('/deleteColour', routes.deleteColour);
 app.post('/editColour', routes.editColour);
-app.get('/pickCopyList', routes.pickCopyList);
 app.post('/copyList', routes.copyList);
 
 http.createServer(app).listen(app.get('port'), function(){
