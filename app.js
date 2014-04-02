@@ -63,10 +63,13 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.post('/addPerson', routes.addPerson);
+app.get('/deletePerson', routes.deletePerson);
 app.get('/personsColours', routes.personsColours);
 app.post('/addColour', routes.addColour);
 app.get('/deleteColour', routes.deleteColour);
-app.get('/editColour', routes.editColour);
+app.post('/editColour', routes.editColour);
+app.get('/pickCopyList', routes.pickCopyList);
+app.post('/copyList', routes.copyList);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

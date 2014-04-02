@@ -2,24 +2,22 @@ extends layout
 
 block content
 	body(onload='document.newColourForm.colour.focus();')
+		// Include pageHeader.jade
+		include pageHeader
 
-		a(href='/') Dashboard
+		div#main
+			h1 Persons Colours
 
-		h1 Persons Colours
+			ul
+				for colour in coloursArray
+					li 
+						form(action='/editColour', method='POST', onsubmit='return onEditColour(this)')
+							input(type='text', name='colourField', value='#{colour.colour}', readonly).readonly
+							input(type='hidden', name='id', value='#{colour._id}')
+							button(type='submit', name='submit', value='edit') EDIT
+							button(type='button')
+								a(href='deleteColour?id=#{colour._id}') DELETE
 
-		ul
-			for colour in coloursArray
-				li 
-					form(action='/editColour', onsubmit='return onEditColour(this)')
-						input(type='text', name='colourField', value='#{colour.colour}', readonly).readonly
-						input(type='hidden', name='id', value='#{colour._id}')
-						button(type='submit', name='submit', value='edit')#edit
-							small EDIT
-						button(type='button')
-							a(href='deleteColour?id=#{colour._id}')
-								small DELETE
-
-		form(name='newColourForm', action='/addColour', method='POST')
-			input(type='text', name='colour')
-			button(type='submit', name='submit', value='Add')
-				small ADD
+			form(name='newColourForm', action='/addColour', method='POST')
+				input(type='text', name='colour')
+				button(type='submit', name='submit', value='Add') ADD

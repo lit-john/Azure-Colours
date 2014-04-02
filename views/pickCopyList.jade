@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    body(onload='document.newPersonForm.person.focus();')
+        include pageHeader
+
+        div#main
+
+            h1 Who's list would you like to copy
+
+            form(action='/copyList', method='POST')
+                ul
+                    for person in personsArray
+                        li 
+                            input(type='radio', name='person', value='#{person._id}') 
+                            label #{person.name}        
+
+                input(type='submit', name='submit', value='Copy')

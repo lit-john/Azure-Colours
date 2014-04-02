@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    body(onload='document.newPersonForm.person.focus();')
+        h1 Name for list
+
+        form(name='newPersonForm', action='/addPerson', method='POST')
+            label Person 
+            input(type='text', name='person')
+            button(type='submit', name='submit') Add
+            button(type='button')
+                a(href='/pickCopyList') COPY
